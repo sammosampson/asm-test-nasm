@@ -1,17 +1,13 @@
 BITS 64
 DEFAULT REL
 
-GLOBAL main
+GLOBAL print
 
 EXTERN WriteFile
 EXTERN GetStdHandle
-
-STD_OUTPUT_HANDLE   EQU -11
+EXTERN STD_OUTPUT_HANDLE
 
 SECTION .data
-
- ds0  db "Hello world!", 13, 10, 0
-
 SECTION .text
 
 print: 
@@ -19,9 +15,8 @@ print:
  ; store old rbp and set rbp to new base
  push rbp
  mov rbp, rsp
- ; store args 1 and 2 in shadow
+ ; store arg 1 in shadow
  mov [rbp + 16], rcx
- mov [rbp + 24], edx
  ;8 for 1 local var
  sub rsp, 8
   
@@ -42,22 +37,6 @@ print:
  mov QWORD [rsp + 32], 0 
  call WriteFile
  add rsp, 40
- 
- ; fn epilogue
- mov rsp, rbp
- pop rbp
- ret
-
-main:
- ; fn prologue
- push rbp
- mov rbp, rsp
- 
- sub rsp, 32
- lea rcx, [ds0]
- mov edx, DWORD 15
- call print
- add rsp, 32
  
  ; fn epilogue
  mov rsp, rbp

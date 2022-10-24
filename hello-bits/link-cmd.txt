@@ -1,0 +1,10 @@
+/MACHINE:X64
+/SUBSYSTEM:CONSOLE
+/OUT:hello.exe
+/NODEFAULTLIB
+/ENTRY:main
+/LIBPATH:"C:\Program Files (x86)\Windows Kits\10\Lib\10.0.19041.0\um\x64"
+hello-main.obj
+kernel32.lib
+hello-print.obj
+hello-STD_OUTPUT_HANDLE.obj
