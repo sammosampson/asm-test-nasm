@@ -7,8 +7,8 @@ EXTERN print
 
 SECTION .data
 
- ds0  db "Hello world!", 13, 10, 0
-git add .
+ ds0  db "Hello world!", 10, 0
+ 
 SECTION .text
 
 main:
@@ -22,7 +22,7 @@ main:
 
  ; tmp var for string call arg 
  sub rsp, 16
- mov QWORD [rbp - 16], 15
+ mov QWORD [rbp - 16], 14
  lea rax, [ds0]
  mov [rbp - 8], rax
  

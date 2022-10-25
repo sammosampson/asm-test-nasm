@@ -55,8 +55,6 @@ print:
  call WriteFile
  add rsp, 40
 
- xor rax, rax
- 
  ; fn epilogue
  mov rsp, rbp
  pop rbp
