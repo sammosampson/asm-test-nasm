@@ -8,7 +8,8 @@ EXTERN print
 SECTION .data
 
  ds0  db "Hello world!", 10, 0
- 
+ ds14  dq 14
+      dq ds0  
 SECTION .text
 
 main:
@@ -20,15 +21,9 @@ main:
  
  ;print("hello world!\r\0");
 
- ; tmp var for string call arg 
- sub rsp, 16
- mov QWORD [rbp - 16], 14
- lea rax, [ds0]
- mov [rbp - 8], rax
- 
  sub rsp, 32
  ; point to tmp string call arg
- lea rcx, [rbp - 16]
+ lea rcx, [ds14]
 
  call print
  add rsp, 32
