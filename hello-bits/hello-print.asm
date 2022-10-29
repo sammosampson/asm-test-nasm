@@ -27,10 +27,11 @@ print:
  sub rsp, 32
  mov ecx, STD_OUTPUT_HANDLE
  call GetStdHandle
- add rsp, 32
  ; store var handle := ret val from call
  mov [rbp - 8], eax
-
+ ; release shadow space for GetStdHandle proc call
+ add rsp, 32
+ 
  ; to_write := cast(*void) to_print.data;
  mov rax, [rbp + 16]
  mov rcx, [rax + 8]
